@@ -61,9 +61,10 @@
   .nav-cta{margin-top:10px;display:flex;justify-content:center;align-items:center;min-height:48px;background:var(--color-accent);color:var(--color-on-accent);border-radius:14px;font-weight:700;text-decoration:none}
 
   /* ===== HERO ===== */
-  .hero{display:grid;grid-template-columns:1fr;gap:22px;align-items:center;padding:34px 0 36px;text-align:center}
-  .hero h1{font-size:clamp(28px,8vw,54px);margin-bottom:12px}
-  .hero p.lead{font-size:17px;max-width:46ch;margin:0 auto 24px}
+  .hero{display:grid;grid-template-columns:1fr;gap:22px;align-items:center;padding:34px 0 36px;text-align:center;overflow:hidden}
+    .hero-text,.hero-media{min-width:0;max-width:100%}
+    .hero h1{font-size:clamp(28px,8vw,54px);margin-bottom:12px;overflow-wrap:break-word}
+    .hero p.lead{font-size:17px;max-width:46ch;margin:0 auto 24px;overflow-wrap:break-word}
   .hero .btn-hero{display:inline-flex;align-items:center;justify-content:center;width:100%;max-width:100%;min-height:54px;padding:14px 24px;background:var(--color-accent);color:var(--color-on-accent);border-radius:16px;font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 4px 12px rgba(234,88,12,.28);transition:filter .2s ease}
   .hero .btn-hero:hover{filter:brightness(.96)}
   .hero .btn-hero:focus-visible{outline:3px solid #fff;outline-offset:2px}
@@ -73,7 +74,7 @@
   .hero-media img{width:100%;height:auto;object-fit:cover}
 
   /* ===== LIVE METRICS STRIP ===== */
-  .metrics{display:flex;gap:12px;margin:26px auto 0;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:2px}
+  .metrics{display:flex;gap:12px;margin:26px auto 0;max-width:100%;min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:2px}
   .metrics::-webkit-scrollbar{display:none}
   .metric{flex:0 0 auto;min-width:128px;scroll-snap-align:start;padding:14px 12px;background:var(--color-card);border:1px solid var(--color-border);border-radius:14px;text-align:center}
   .metric .val{font-family:var(--font-mono);font-size:22px;font-weight:600;color:var(--color-primary);display:block;line-height:1.2}
