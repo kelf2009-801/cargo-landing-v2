@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Грузоперевозки Газель — перевозки по Сызрани и области</title>
+<meta name="description" content="Грузоперевозки на Газели Next по Сызрани и Самарской области. Переезды, доставка мебели, стройматериалов. Быстро, аккуратно, по фиксированной цене." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --color-primary:#2563EB;
+    --color-on-primary:#FFFFFF;
+    --color-secondary:#3B82F6;
+    --color-accent:#C2410C;
+    --color-on-accent:#000000;
+    --color-background:#EFF6FF;
+    --color-foreground:#1E40AF;
+    --color-card:#FFFFFF;
+    --color-card-foreground:#1E40AF;
+    --color-muted:#E9EFF8;
+    --color-muted-foreground:#475569;
+    --color-border:#BFDBFE;
+    --color-ok:#16A34A;
+    --color-warn:#F59E0B;
+    --border-radius:14px;
+    --shadow-card:0 2px 8px rgba(30,64,175,.07);
+    --maxw:1140px;
+    --font-mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--color-muted-foreground);
+    background:var(--color-background);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;width:100%;
+  }
+  h1,h2,h3{font-family:'Inter',sans-serif;font-weight:800;line-height:1.15;color:var(--color-foreground);text-wrap:balance;letter-spacing:-.01em}
+  a{color:inherit}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px;width:100%}
+
+  /* ===== NAV ===== */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(239,246,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:58px;gap:12px}
+  .logo{font-weight:800;font-size:18px;color:var(--color-foreground);white-space:nowrap;flex-shrink:0}
+  .logo b{color:var(--color-primary)}
+  .burger{display:inline-flex;width:42px;height:42px;border:1px solid var(--color-border);background:var(--color-card);border-radius:10px;cursor:pointer;align-items:center;justify-content:center;flex-shrink:0}
+  .burger span{display:block;width:20px;height:2px;background:var(--color-foreground);position:relative}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--color-foreground)}
+  .burger span::before{top:-6px}.burger span::after{top:6px}
+  .burger:focus-visible{outline:3px solid var(--color-primary);outline-offset:2px}
+  .nav-links{position:absolute;top:58px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--color-card);border-bottom:1px solid var(--color-border);padding:8px 18px 16px;box-shadow:0 12px 24px rgba(30,64,175,.12);display:none}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 4px;border-bottom:1px solid var(--color-border);font-weight:500;font-size:16px;text-decoration:none;color:var(--color-foreground)}
+  .nav-links a:last-child{border-bottom:none}
+  .nav-cta{margin-top:10px;display:flex;justify-content:center;align-items:center;min-height:48px;background:var(--color-accent);color:var(--color-on-accent);border-radius:14px;font-weight:700;text-decoration:none}
+
+  /* ===== HERO ===== */
+  .hero{display:grid;grid-template-columns:1fr;gap:22px;align-items:center;padding:34px 0 36px;text-align:center}
+  .hero h1{font-size:clamp(28px,8vw,54px);margin-bottom:12px}
+  .hero p.lead{font-size:17px;max-width:46ch;margin:0 auto 24px}
+  .hero .btn-hero{display:inline-flex;align-items:center;justify-content:center;width:100%;max-width:100%;min-height:54px;padding:14px 24px;background:var(--color-accent);color:var(--color-on-accent);border-radius:16px;font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 4px 12px rgba(234,88,12,.28);transition:filter .2s ease}
+  .hero .btn-hero:hover{filter:brightness(.96)}
+  .hero .btn-hero:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  .hero .btn-ghost{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:48px;margin-top:10px;padding:12px 20px;border:2px solid var(--color-primary);color:var(--color-primary);border-radius:16px;font-weight:600;font-size:16px;text-decoration:none;transition:background .2s ease}
+  .hero .btn-ghost:hover{background:rgba(37,99,235,.08)}
+  .hero-media{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-card)}
+  .hero-media img{width:100%;height:auto;object-fit:cover}
+
+  /* ===== LIVE METRICS STRIP ===== */
+  .metrics{display:flex;gap:12px;margin:26px auto 0;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:2px}
+  .metrics::-webkit-scrollbar{display:none}
+  .metric{flex:0 0 auto;min-width:128px;scroll-snap-align:start;padding:14px 12px;background:var(--color-card);border:1px solid var(--color-border);border-radius:14px;text-align:center}
+  .metric .val{font-family:var(--font-mono);font-size:22px;font-weight:600;color:var(--color-primary);display:block;line-height:1.2}
+  .metric .lbl{font-size:12px;color:var(--color-muted-foreground);line-height:1.3;display:block;margin-top:3px}
+  .metric.ok .val{color:var(--color-ok)}
+  .metric.hot .val{color:var(--color-accent)}
+
+  /* ===== SECTIONS ===== */
+  section{padding:28px 0}
+  .sec-head{text-align:center;max-width:620px;margin:0 auto 28px}
+  .sec-head h2{font-size:clamp(24px,6vw,38px);margin-bottom:8px}
+  .sec-head p{font-size:15px}
+  .eyebrow{display:inline-block;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px;color:var(--color-accent);margin-bottom:6px}
+
+  /* ===== HOW (steps) ===== */
+  .steps{display:grid;grid-template-columns:1fr;gap:16px}
+  .step{position:relative;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--border-radius);padding:22px 22px 22px 64px;box-shadow:var(--shadow-card)}
+  .step .num{position:absolute;left:18px;top:20px;font-family:var(--font-mono);font-size:26px;font-weight:600;color:var(--color-primary)}
+  .step h3{font-size:17px;margin-bottom:6px}
+  .step p{font-size:14px}
+  .step::after{content:"";position:absolute;right:14px;top:50%;transform:translateY(-50%);width:28px;height:28px;background:var(--color-muted);border-radius:50%;display:none}
+
+  /* ===== FLEET / SERVICES ===== */
+  .grid-fleet{display:grid;grid-template-columns:1fr;gap:18px}
+  .fleet-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--border-radius);padding:20px;box-shadow:var(--shadow-card)}
+  .fleet-card .ic{width:38px;height:38px;color:var(--color-primary);margin-bottom:10px}
+  .fleet-card h3{font-size:17px;margin-bottom:6px}
+  .fleet-card p{font-size:14px}
+  .fleet-card .price{margin-top:10px;font-weight:700;color:var(--color-accent);font-size:17px}
+
+  /* ===== PHOTO ROW ===== */
+  .photo-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .photo-tile{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--color-border)}
+  .photo-tile img{width:100%;aspect-ratio:1/1;object-fit:cover}
+
+  /* ===== MAP ===== */
+  .map-box{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--color-border);box-shadow:var(--shadow-card);background:var(--color-card)}
+  .map-box iframe{display:block;width:100%;height:320px;border:0}
+
+  /* ===== TESTIMONIALS ===== */
+  .carousel{position:relative;max-width:740px;margin:0 auto}
+  .slides{overflow:hidden;border-radius:14px}
+  .slide{display:none;background:var(--color-card);border:1px solid var(--color-border);border-radius:14px;padding:26px 20px;text-align:center;box-shadow:var(--shadow-card)}
+  .slide.active{display:block}
+  .slide blockquote{font-weight:500;font-size:17px;color:var(--color-foreground);margin-bottom:14px;line-height:1.45}
+  .slide .who{font-weight:600;font-size:14px;color:var(--color-foreground)}
+  .slide .who span{display:block;font-weight:400;color:var(--color-muted-foreground);font-size:13px}
+  .carousel-controls{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:18px}
+  .cbtn{width:42px;height:42px;border-radius:50%;border:1px solid var(--color-border);background:var(--color-card);color:var(--color-primary);cursor:pointer;font-size:18px;transition:background .2s}
+  .cbtn:hover{background:var(--color-muted)}
+  .cbtn:focus-visible{outline:3px solid var(--color-primary);outline-offset:2px}
+  .dots{display:flex;gap:8px}
+  .dot{width:10px;height:10px;border-radius:50%;border:none;background:var(--color-border);cursor:pointer;transition:background .2s}
+  .dot.active{background:var(--color-primary)}
+
+  /* ===== CTA ===== */
+  .cta{background:linear-gradient(135deg,#1E40AF,#2563EB);border-radius:20px;padding:36px 20px;text-align:center;color:#F7F7F7}
+  .cta h2{color:#F7F7F7;font-size:clamp(22px,6vw,36px);margin-bottom:10px}
+  .cta p{color:rgba(247,247,247,.92);margin-bottom:22px;font-size:16px}
+  .cta .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:13px 24px;background:var(--color-accent);color:var(--color-on-accent);border-radius:15px;font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+  .cta .btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  .cta-note{margin-top:12px;font-size:13px;color:rgba(247,247,247,.8)}
+
+  /* ===== FOOTER ===== */
+  footer{padding:24px 0;border-top:1px solid var(--color-border);color:var(--color-muted-foreground);font-size:13px;text-align:center;line-height:1.5}
+  footer .f1{font-weight:600;color:var(--color-foreground)}
+
+  /* reveal */
+  html.js .reveal{opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease}
+  html.js .reveal.is-visible{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    html.js .reveal{opacity:1!important;transform:none!important;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ===== TABLET ===== */
+  @media(min-width:600px){
+    .grid-fleet{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:1fr 1fr}
+    .photo-row{grid-template-columns:repeat(4,1fr);gap:14px}
+    .photo-tile img{aspect-ratio:1/1}
+    .metrics{overflow-x:visible;flex-wrap:wrap;justify-content:center}
+    .map-box iframe{height:380px}
+  }
+  /* ===== DESKTOP ===== */
+  @media(min-width:880px){
+    .hero{grid-template-columns:1.05fr .95fr;padding:60px 0 64px;gap:36px;text-align:left}
+    .hero p.lead{margin-left:0;margin-right:0}
+    .hero .btn-hero{width:auto;max-width:300px}
+    .hero .btn-ghost{width:auto;max-width:300px;margin-top:12px}
+    .grid-fleet{grid-template-columns:repeat(3,1fr)}
+    section{padding:40px 0}
+    .burger{display:none}
+    .nav-links{position:static;flex-direction:row;align-items:center;gap:26px;background:none;border:none;box-shadow:none;padding:0;display:flex}
+    .nav-links a{padding:0;border:none;font-size:15px}
+    .nav-cta{margin:0;padding:10px 18px;min-height:42px;font-size:14px}
+    .metrics{max-width:none;margin-left:0;margin-right:0;justify-content:flex-start}
+    .metric{min-width:140px;text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo">Груз<b>Перевозки</b></div>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="navlinks"><span></span></button>
+    <nav class="nav-links" id="navlinks">
+      <a href="#services">Услуги</a>
+      <a href="#how">Как работаем</a>
+      <a href="#fleet">Парк</a>
+      <a href="#map">Зона работы</a>
+      <a href="#reviews">Отзывы</a>
+      <a class="nav-cta" href="#book">Заказать перевозку</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="wrap hero" id="top">
+    <div class="hero-text reveal">
+      <span class="eyebrow">Перевозки по Сызрани и области</span>
+      <h1>Грузоперевозки на Газели — быстро и честно</h1>
+      <p class="lead">Переезды, доставка мебели и стройматериалов. Подача в течение часа, фиксированная цена до выезда, груз под полным контролем.</p>
+      <a class="btn-hero" href="#book">Заказать перевозку</a>
+      <a class="btn-ghost" href="tel:+79000000000">Позвонить: +7 900 000-00-00</a>
+      <div class="metrics" aria-label="Текущие показатели">
+        <div class="metric ok"><span class="val">2 часа</span><span class="lbl">среднее время подачи</span></div>
+        <div class="metric hot"><span class="val">1500+</span><span class="lbl">перевозок выполнено</span></div>
+        <div class="metric ok"><span class="val">4.9/5</span><span class="lbl">оценка клиентов</span></div>
+        <div class="metric"><span class="val">до 1.5 т</span><span class="lbl">грузоподъёмность</span></div>
+      </div>
+    </div>
+    <div class="hero-media reveal">
+      <picture>
+        <source media="(min-width:880px)" srcset="images/hero-1200.webp" />
+        <img src="images/hero-800.webp" alt="Газель Next на трассе" width="800" height="446" loading="eager" />
+      </picture>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Услуги</span>
+        <h2>Что перевозим</h2>
+        <p>Газели с тентованным и цельнометаллическим кузовом, объём до 18 м³.</p>
+      </div>
+      <div class="grid-fleet">
+        <div class="fleet-card reveal">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+          <h3>Квартирные переезды</h3>
+          <p>Аккуратно упакуем и перевезём мебель, технику, коробки — в черте города или между городами.</p>
+          <div class="price">от 1200 ₽/ч</div>
+        </div>
+        <div class="fleet-card reveal">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12h20M6 8l-4 4 4 4M18 8l4 4-4 4"/></svg>
+          <h3>Офисные перевозки</h3>
+          <p>Переезд офиса за один день: столы, кресла, шкафы, оргтехника — с грузчиками по запросу.</p>
+          <div class="price">от 1500 ₽/ч</div>
+        </div>
+        <div class="fleet-card reveal">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20V10a8 8 0 0116 0v10M4 10h16"/></svg>
+          <h3>Стройматериалы</h3>
+          <p>Доставка песка, цемента, гипсокартона, досок — аккуратно и в срок.</p>
+          <div class="price">от 1100 ₽/ч</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Простой процесс</span>
+        <h2>Как мы работаем</h2>
+        <p>Три шага — и груз у вас. Никакой бюрократии.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><span class="num">01</span><h3>Заявка</h3><p>Звонок или сообщение — называете адрес, объём и время.</p></div>
+        <div class="step reveal"><span class="num">02</span><h3>Цена заранее</h3><p>Называем фиксированную стоимость до выезда. Без доплат по факту.</p></div>
+        <div class="step reveal"><span class="num">03</span><h3>Перевозка</h3><p>Подаём машину, аккуратно грузим и доставляем точно по адресу.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO ROW -->
+  <section id="fleet">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Парк</span>
+        <h2>Наша техника</h2>
+        <p>Исправные, чистые машины. Водители с опытом от 5 лет.</p>
+      </div>
+      <div class="photo-row reveal">
+        <picture>
+          <source media="(min-width:480px)" srcset="images/delivery-800.webp" />
+          <img src="images/delivery-400.webp" alt="Городская доставка" loading="lazy" />
+        </picture>
+        <picture>
+          <source media="(min-width:480px)" srcset="images/loading-800.webp" />
+          <img src="images/loading-400.webp" alt="Погрузка груза в Газель" loading="lazy" />
+        </picture>
+        <picture>
+          <source media="(min-width:480px)" srcset="images/driver-800.webp" />
+          <img src="images/driver-400.webp" alt="Водитель грузовой Газели" loading="lazy" />
+        </picture>
+        <picture>
+          <source media="(min-width:480px)" srcset="images/route-800.webp" />
+          <img src="images/route-400.webp" alt="Планирование маршрута доставки" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section id="map">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Зона работы</span>
+        <h2>Работаем по всему городу</h2>
+        <p>Сызрань и окрестности, межгород — по договорённости.</p>
+      </div>
+      <div class="map-box reveal">
+        <iframe title="Карта зоны работы" src="https://yandex.ru/map-widget/v1/?ll=48.474%2C53.155&z=11" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Отзывы</span>
+        <h2>Что говорят клиенты</h2>
+      </div>
+      <div class="carousel reveal" id="carousel" aria-roledescription="carousel">
+        <div class="slides">
+          <div class="slide active" role="group" aria-roledescription="slide" aria-label="1 из 3">
+            <blockquote>«Перезвонили через пять минут, назвали цену сразу. Перевезли квартиру за полдня — аккуратно, ничего не поцарапали.»</blockquote>
+            <div class="who">Сергей<span>переезд по Сызрани</span></div>
+          </div>
+          <div class="slide" role="group" aria-roledescription="slide" aria-label="2 из 3">
+            <blockquote>«Возили стройматериалы на дачу. Машина пришла вовремя, водитель помог загрузить. Всё чётко, без доплат.»</blockquote>
+            <div class="who">Андрей<span>доставка материалов</span></div>
+          </div>
+          <div class="slide" role="group" aria-roledescription="slide" aria-label="3 из 3">
+            <blockquote>«Забирали диван и шкаф у родителей. Грузчики сами всё упаковали. Теперь только к вам, спасибо!»</blockquote>
+            <div class="who">Наталья<span>перевозка мебели</span></div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="cbtn" id="prev" aria-label="Предыдущий отзыв">‹</button>
+          <div class="dots" id="dots" role="tablist" aria-label="Выбор отзыва"></div>
+          <button class="cbtn" id="next" aria-label="Следующий отзыв">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / BOOK -->
+  <section id="book">
+    <div class="wrap">
+      <div class="cta reveal">
+        <h2>Нужна перевозка сегодня?</h2>
+        <p>Оставьте заявку — перезвоним за 5 минут и назовём точную цену.</p>
+        <a class="btn" href="tel:+79000000000">Позвонить сейчас</a>
+        <div class="cta-note">Или напишите в WhatsApp/Telegram — ответим быстро</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f1">© 2026 Грузоперевозки Сызрань</div>
+    <div>Газель Next · до 1.5 т · переезды и доставка</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function reduced(){ return rm.matches; }
+
+  // ===== Mobile nav =====
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('navlinks');
+  burger.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ links.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+  });
+
+  // ===== Carousel =====
+  var slides = Array.prototype.slice.call(document.querySelectorAll('#carousel .slide'));
+  var dotsWrap = document.getElementById('dots');
+  var idx = 0, timer = null;
+  slides.forEach(function(_, i){
+    var b = document.createElement('button');
+    b.className = 'dot' + (i===0?' active':'');
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Отзыв ' + (i+1));
+    b.addEventListener('click', function(){ go(i); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+  function show(n){
+    slides.forEach(function(s,i){ s.classList.toggle('active', i===n); });
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===n); });
+    idx = n;
+  }
+  function go(n){ show((n+slides.length)%slides.length); restart(); }
+  function next(){ go(idx+1); }
+  function prev(){ go(idx-1); }
+  function restart(){ if(timer) clearInterval(timer); if(!reduced()) timer = setInterval(next, 5000); }
+  document.getElementById('next').addEventListener('click', next);
+  document.getElementById('prev').addEventListener('click', prev);
+  var car = document.getElementById('carousel');
+  car.addEventListener('mouseenter', function(){ if(timer) clearInterval(timer); });
+  car.addEventListener('mouseleave', restart);
+  car.addEventListener('focusin', function(){ if(timer) clearInterval(timer); });
+  car.addEventListener('focusout', restart);
+  restart();
+
+  // ===== Reveal =====
+  function initReveal(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window) || reduced()){
+      els.forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  }
+  initReveal();
+})();
+</script>
+</body>
+</html>
